@@ -7,6 +7,7 @@ use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 #[ORM\Table(name: 'tags')]
@@ -21,6 +22,10 @@ class Tag
 
     #[ORM\Column(type: 'string', length: 255)]
     private $label;
+
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[Gedmo\Slug(fields: ['title'])]
+    private $slug;
 
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'tags')]
     private $posts;
