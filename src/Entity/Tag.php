@@ -24,7 +24,7 @@ class Tag
     private $label;
 
     #[ORM\Column(type: 'string', length: 255, unique: true)]
-    #[Gedmo\Slug(fields: ['title'])]
+    #[Gedmo\Slug(fields: ['label'])]
     private $slug;
 
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'tags')]
